@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- ioc的入门 
+配置对象的创建
+路径要写对
+这样配置会自动找类里的无参构造并创建对象
+-->
+<!-- <bean id="user" class="com.spring.ioc.po.User" scope="prototype"></bean> -->
+<!-- 使用静态工厂创建对象
+class:静态方法所在的类
+factory-method：静态方法的名称
+ -->
+<!-- <bean id="bean2" class="com.spring.bean.Bean2Factory" factory-method="getBean2"></bean> -->
+<!-- 使用实例工厂来创建对象 
+创建工厂的对象
+-->
+<!-- 创建工厂的对象 -->
+<!-- <bean id="Bean3Factory" class="com.spring.bean.Bean3Factory"></bean>
+<bean id="bean3" factory-bean="Bean3Factory" factory-method="getBean3"></bean> -->
+
+<!-- 使用有参数的构造来注入属性 -->
+<!-- <bean id="demo" class="com.spring.property.PropertyDemo1"> -->
+	<!-- 使用有参构造来注入 
+	name：有参构造的属性
+	value：属性值
+	-->
+<!-- 	<constructor-arg name="username" value="小胖"></constructor-arg>
+</bean> -->
+
+<!-- 使用setXXX()注入属性 -->
+<!-- <bean id="book" class="com.spring.property.Book"> -->
+	<!-- 注入属性值 
+	name：类里面定义的属性名称
+	value：设置的具体的值
+	-->
+	<!-- <property name="bookname" value="java"></property>
+</bean> -->
+
+<!-- 注入对象类型的属性 -->
+<!-- 配置service和dao的对象 -->
+<!-- <bean id="userdao" class="com.spring.ioc.dao.UserDao"></bean>
+<bean id="userservice" class="com.spring.ioc.service.UserService"> -->
+<!-- 注入dao对象 
+对象类型不用写value属性
+字符串类型写value属性
+name:service类里面属性名称
+ref属性：引用的类型，写dao配置bean标签中id的值
+-->
+<!-- 	<property name="userdao" ref="userdao"></property>
+</bean> -->
+
+<!-- P名称空间注入 
+p:属性名="属性值"即可完成注入
+-->
+<!-- 创建Person类的对象 -->
+<!-- <bean id="person" class="com.spring.ioc.po.Person" p:pname="小胖"></bean> -->
+
+<!-- 注入复杂类型的属性值 -->
+<bean id="person" class="com.spring.ioc.po.Person">
+	<!-- 数组 -->
+	<property name="array">
+		<list>
+			<value>1</value>
+			<value>2</value>
+			<value>3</value>
+		</list>
+	</property>
+	<!-- List类型 -->
+	<property name="list">
+		<list>
+			<value>11</value>
+			<value>12</value>
+			<value>13</value>
+		</list>
+	</property>
+	<!-- map类型 -->
+	<property name="map">
+		<map>
+			<entry key="aa" value="21"></entry>
+			<entry key="bb" value="22"></entry>
+			<entry key="cc" value="23"></entry>
+		</map>
+	</property>
+	<!-- properties类型 -->
+	<property name="properties">
+		<props>
+			<prop key="xx">31</prop>
+			<prop key="yy">32</prop>
+			<prop key="zz">33</prop>
+		</props>
+	</property>
+</bean>
+</beans>
